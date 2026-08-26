@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TechAI</string>
+    <string name="title_activity_main">TechAI</string>
+    <string name="package_name">com.techai.app</string>
+    <string name="custom_url_scheme">com.techai.app</string>
+</resources>
