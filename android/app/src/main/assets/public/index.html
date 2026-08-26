@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Tech-AI Mobile</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        h2 { color: #38bdf8; margin-top: 10px; }
+        textarea { width: 100%; height: 100px; background: #1e293b; color: #f8fafc; border: 1px solid #475569; padding: 12px; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; background: #0284c7; color: white; border: none; padding: 14px; font-size: 16px; font-weight: bold; border-radius: 8px; margin-top: 12px; }
+        #output { background: #1e293b; border: 1px solid #334155; padding: 16px; border-radius: 8px; margin-top: 20px; white-space: pre-wrap; font-family: monospace; font-size: 14px; min-height: 150px; }
+    </style>
+</head>
+<body>
+    <h2>🤖 Tech-AI Mobile</h2>
+    <textarea id="prompt" placeholder="Enter prompt..."></textarea>
+    <button onclick="askAI()">Send Query</button>
+    <div id="output">App ready.</div>
+
+    <script>
+        const BACKEND_URL = "https://YOUR_BACKEND_URL.trycloudflare.com";
+
+        async function askAI() {
+            const prompt = document.getElementById('prompt').value;
+            const output = document.getElementById('output');
+            if (!prompt.trim()) return;
+            output.innerText = "⚡ Thinking...";
+
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/ask`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ prompt: prompt })
+                });
+
+                const reader = res.body.getReader();
+                const decoder = new TextDecoder();
+                output.innerText = "";
+
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    output.innerText += decoder.decode(value);
+                }
+            } catch (err) {
+                output.innerText = "❌ Connection failed: " + err;
+            }
+        }
+    </script>
+</body>
+</html>
