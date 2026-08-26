@@ -1,6 +1,9 @@
 {
-  "impactedPlatforms": ["android"],
-  "android": {
-    "root": "android"
+  "remote": "origin",
+  "branch": "master",
+  "platforms": {
+    "android": {
+      "root": "android"
+    }
   }
 }
