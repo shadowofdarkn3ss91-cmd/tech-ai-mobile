@@ -1,0 +1,6 @@
+{
+  "impactedPlatforms": ["android"],
+  "android": {
+    "root": "android"
+  }
+}
