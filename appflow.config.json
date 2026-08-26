@@ -1,9 +1,8 @@
 {
-  "remote": "origin",
-  "branch": "master",
-  "platforms": {
-    "android": {
-      "root": "android"
+  "apps": [
+    {
+      "appId": "",
+      "androidPath": "android"
     }
-  }
+  ]
 }
